@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/groups/create', [GroupController::class, 'create']);
     Route::get('/groups/{group}', [GroupController::class ,'show']);
     Route::post('/groups', [GroupController::class, 'store']);
+    
+    //comment
+    Route::get('activities/{activity}/comments/create', [CommentController::class, 'create']);
+    Route::post('activities/{activity}', [CommentController::class, 'store']);
     
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

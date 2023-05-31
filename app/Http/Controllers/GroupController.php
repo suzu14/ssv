@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\User;
 
 class GroupController extends Controller
 {
@@ -12,9 +13,9 @@ class GroupController extends Controller
         return view('groups/create');
     }
     
-    public function show(Group $group)
+    public function show(Group $group, User $user)
     {
-        return view('groups.show')->with(['group' => $group]);
+        return view('groups.show')->with(['group' => $group, 'users' => $user]);
     }
     
     public function store(Request $request, Group $group)

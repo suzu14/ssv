@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
-    public function home(Activity $activity, Group $group)
+    public function home(Activity $activity, Group $group, User $user)
     {
-        return view('home')->with(['activities' => $activity->getPaginateByLimit(), 'groups' => $group->get()]);
+        return view('home')->with(['activities' => $activity->getPaginateByLimit(), 'groups' => $group, 'user' => $user]);
     }
     
-    public function show(Activity $activity, Group $group, User $user)
+    public function show(Activity $activity, Comment $comment, Group $group, User $user)
     {
         return view('activities/show')->with(['activity' => $activity, 'group' => $group, 'user' => $user]);
         //dd($activity);
