@@ -13,7 +13,7 @@
                 <ul>
                     <li><a href='/'>ホーム</a></li>
                     <li><a href='/create'>新規報告</a></li>
-                    <li>書類提出</li>
+                    <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
         </header>
@@ -22,6 +22,12 @@
             <h2>活動詳細（{{ $activity->name }}）</h2>
         </div>
         
+        <p class='message'>
+            @if ($activity->end_at == NULL)
+                <p>※活動終了報告をしてください</p>
+            @else
+                <p>※報告済みの項目を修正する際はグループ管理者に確認をとってください</p>
+            @endif
         <div class="activity_detail">
             <div class='start_time'>
                 <h3>開始時刻</h3>
@@ -95,7 +101,6 @@
         <br>
         <div class='comment_list'>
             <h3>コメント一覧</h3>
-            <!--<p>{{ dd($activity->comments) }}</p>-->
             @forelse($activity->comments as $comment)
                 <div>
                     <p>{{ $comment->created_at }}</p>

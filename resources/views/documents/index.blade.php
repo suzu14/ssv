@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>活動履歴一覧</title>
+        <title>書類提出</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -19,20 +19,18 @@
         </header>
         
         <div class='pagetitle'>
-            <h2>活動履歴一覧</h2>
+            <h2>書類提出</h2>
         </div>
-        
         <table class='activities'>
-            
             <thead>
                 <tr>
-                    <th>活動日時</th><th>活動内容</th><th>ステータス</th><th>グループ</th>
+                    <th>グループ</th><th>内容</th><th>ステータス</th><th>提出期限</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user->activities as $activity)
+                @foreach ($documents as $document)
                 <tr>
-                    <td>{{ $activity->start_at }}</td><td><a href='/activities/{{ $activity->id }}'>{{ $activity->name }}</a></td><td>{{ $activity->status }}</td><td>{{ $activity->group->name }}</td>
+                    <td>{{ $document->group->name }}</td><td><a href='/documents/{{ $document->id }}'>{{ $document->name }}</a></td><td>{{ $document->status }}</td><td>{{ $document->deadline }}</td>
                 </tr>
                 @endforeach
             </tbody>
