@@ -22,4 +22,9 @@ class Group extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    
+    public function documents()   
+    {
+        return $this->hasMany(Document::class);  
+    }
 }

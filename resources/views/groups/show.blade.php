@@ -13,7 +13,7 @@
                 <ul>
                     <li><a href='/'>ホーム</a></li>
                     <li><a href='/create'>新規報告</a></li>
-                    <li>書類提出</li>
+                    <li><a href='/documents/index'>書類提出</a>出</li>
                 </ul>
             </nav>
         </header>

@@ -13,7 +13,7 @@
                 <ul>
                     <li><a href='/'>ホーム</a></li>
                     <li><a href='/create'>新規報告</a></li>
-                    <li>書類提出</li>
+                    <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
         </header>
@@ -27,9 +27,9 @@
             @method('put')
             <p class='message'>
             @if ($activity->end_at == NULL)
-                <p>活動終了報告をしてください</p>
+                <p>※活動終了報告をしてください</p>
             @else
-                <p>報告済みの項目を修正する際はグループ管理者に確認をとってください</p>
+                <p>※報告済みの項目を修正する際はグループ管理者に確認をとってください</p>
             @endif
             </p>
             
