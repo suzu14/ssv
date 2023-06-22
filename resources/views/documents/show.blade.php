@@ -16,7 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
-            <div>ログイン中：<a href='/profile'>{{ $user->name }}</a></div>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
@@ -42,8 +42,46 @@
             @csrf
             @method('PUT')
             <input type="file" name="document_file">
+            @if ($document->path != NULL)
+                <input type="text" name="document[path]" value="{{ $document->path }}" readonly
+            @endif
+            <input type="text" name="document[status]" value=2>
             <input type="submit" value="アップロード">
         </form>
+        
+        @canany ('admin', 'leader')
+            <form action="/documents/{{ $document->id }}" method="POST">
+                @csrf
+                @method('put')
+                    <div class='approval'>
+                        @if ($document->status == 2)
+                            <button type="submit" name="document[status]" value=3 onclick="submitApproval({{ $document->id }})">承認</button>
+                        @elseif ($document->status == 3)
+                            <button type="button" disabled>承認済み</button>
+                        @else
+                        @endif
+                    </div>
+            </form>
+        
+            <form action="/documents/{{ $document->id }}" id="form_{{ $document->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deleteDocument({{ $document->id }})">削除</button> 
+            </form>
+        @endcan
+        
+        <script>
+            function submitApproval(id) {
+                document.getElementById("document[status]").submit();
+            }
+            
+            function deleteDocument(id) {
+                'use strict'
+                if (confirm('活動報告削除\n削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
         
     </body>
 </html>

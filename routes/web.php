@@ -51,8 +51,11 @@ Route::middleware('auth')->group(function () {
     
     //document
     Route::get('/documents/index', [DocumentController::class, 'index']);
+    Route::get('/documents/create', [DocumentController::class, 'create'])->name('create');
     Route::get('documents/{document}', [DocumentController::class, 'show'])->name('show');
     Route::put('/documents/{document}', [DocumentController::class, 'upload'])->name('upload');
+    Route::delete('/documents/{document}', [DocumentController::class,'delete']);
+    Route::post('/documents', [DocumentController::class, 'store']);
     
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

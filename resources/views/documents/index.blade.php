@@ -16,7 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
-            <div>ログイン中：<a href='/profile'>{{ $user->name }}</a></div>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
@@ -25,17 +25,36 @@
         <table class='activities'>
             <thead>
                 <tr>
-                    <th>グループ</th><th>内容</th><th>ステータス</th><th>提出期限</th>
+                    <th>グループ</th>
+                    <th>内容</th>
+                    <th>ステータス</th>
+                    <th>提出期限</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($documents as $document)
+                @foreach ($user->documents as $document)
                 <tr>
-                    <td>{{ $document->group->name }}</td><td><a href='/documents/{{ $document->id }}'>{{ $document->name }}</a></td><td>{{ $document->status }}</td><td>{{ $document->deadline }}</td>
+                    <td>{{ $document->group->name }}</td>
+                    <td><a href='/documents/{{ $document->id }}'>{{ $document->name }}</a></td>
+                    <td>
+                        @if ($document->status == 1)
+                        未提出
+                        @elseif ($document->status == 2)
+                        承認待ち
+                        @elseif ($document->status == 3)
+                        承認済み
+                        @else
+                        @endif
+                    </td>
+                    <td>{{ $document->deadline }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        
+        <div class='create'>
+            <a href='/documents/create'>新規書類登録</a>
+        </div>
         
         <div class='groups'>
             <h3>参加中のグループ</h3>
