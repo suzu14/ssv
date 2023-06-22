@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>新規グループ作成</title>
+        <title>グループ詳細</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -16,20 +16,31 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
-            <div>ログイン中：<a href='/profile'>{{ $user->name }}</a></div>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
-            <h2>新規グループ作成</h2>
+            <h2>グループ編集（{{ $group->name }}）</h2>
         </div>
         
-        <form action="/groups" method="POST">
+        <form action="/groups/{{ $group->id }}" method="POST">
             @csrf
-            <div class='group'>
+            @method('put')
+            <div class='name'>
                 <h3>グループ名</h3>
                 <input type="text" name="group[name]">
             </div>
-            <input type="submit" value="新規グループ作成"/>
+            
+            <h3>参加メンバー</h3>
+            <div class="member_list">
+                <ul>
+                    @foreach ($group->users as $user)
+                    <li>{{ $user->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <input type="submit" value="保存"/>
         </form>
+        
     </body>
 </html>

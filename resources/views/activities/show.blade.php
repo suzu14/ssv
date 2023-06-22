@@ -16,6 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
@@ -72,15 +73,33 @@
                 @endif
             </div>
         </div>
+        
         <br>
+        
         <div class='edit'>
             <a href='/activities/{{ $activity->id }}/edit'>編集</a>
         </div>
+        
+        @can ('admin')
+            <form action="/activities/{{ $activity->id }}" method="POST">
+            @csrf
+            @method('put')
+            <div class='approval'>
+                @if ($activity->status == 2)
+                    <button type="submit" name="activity[status]" value=3 onclick="submitApproval({{ $activity->id }})">承認</button>
+                @elseif ($activity->status == 3)
+                    <button type="button" disabled>承認済み</button>
+                @endif
+            </div>
+            </form>
+        @endcan
+        
         <form action="/activities/{{ $activity->id }}" id="form_{{ $activity->id }}" method="post">
             @csrf
             @method('DELETE')
             <button type="button" onclick="deleteActivity({{ $activity->id }})">削除</button> 
         </form>
+        
         <div class='comment'>
             <h2>新規コメント追加</h2>
             <form action="/activities/{{ $activity->id }}" method="POST">
@@ -98,7 +117,9 @@
                 <input type="submit" value="コメントする"/>
             </form>
         </div>
+        
         <br>
+        
         <div class='comment_list'>
             <h3>コメント一覧</h3>
             @forelse($activity->comments as $comment)
@@ -123,18 +144,11 @@
         </div>
         <br>
         
-        <!--
         <script>
-            function deleteComment(id) {
-                'use strict'
-                if (confirm('コメント削除\n削除すると復元できません。\n本当に削除しますか？')) {
-                    document.getElementById(`form_${id}`).submit();
-                }
+            function submitApproval(id) {
+                document.getElementById("activity[status]").submit();
             }
-        </script>
-        -->
-        
-        <script>
+            
             function deleteActivity(id) {
                 'use strict'
                 if (confirm('活動報告削除\n削除すると復元できません。\n本当に削除しますか？')) {
