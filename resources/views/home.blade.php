@@ -16,6 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
+            <div>ログイン中：<a href='/profile'>{{ $user->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
@@ -26,18 +27,35 @@
             
             <thead>
                 <tr>
-                    <th>活動日時</th><th>活動内容</th><th>ステータス</th><th>グループ</th>
+                    <th>活動日時</th>
+                    <th>活動内容</th>
+                    <th>ステータス</th>
+                    <th>グループ</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user->activities as $activity)
-                <tr>
-                    <td>{{ $activity->start_at }}</td><td><a href='/activities/{{ $activity->id }}'>{{ $activity->name }}</a></td><td>{{ $activity->status }}</td><td>{{ $activity->group->name }}</td>
-                </tr>
+                @foreach ($user->groups as $group)
+                    @foreach ($user->activities as $activity)
+                    <tr>
+                        <td>{{ $activity->start_at }}</td>
+                        <td><a href='/activities/{{ $activity->id }}'>{{ $activity->name }}</a></td>
+                        <td>
+                            @if ($activity->status == 1)
+                                活動中
+                            @elseif ($activity->status == 2)
+                                承認待ち
+                            @elseif ($activity->status == 3)
+                                承認済み
+                            @endif
+                        </td>
+                        <td><a href="/groups/{{ $group->id }}">{{ $activity->group->name }}</a></td>
+                    </tr>
+                    @endforeach
                 @endforeach
             </tbody>
         </table>
         
+        @can('general')
         <div class='groups'>
             <h3>参加中のグループ</h3>
             @foreach ($user->groups as $group)
@@ -46,5 +64,6 @@
             </ul>
             @endforeach
         </div>
+        @endcan
     </body>
 </html>

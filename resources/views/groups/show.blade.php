@@ -13,15 +13,29 @@
                 <ul>
                     <li><a href='/'>ホーム</a></li>
                     <li><a href='/create'>新規報告</a></li>
-                    <li><a href='/documents/index'>書類提出</a>出</li>
+                    <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
+        <div class='pagetitle'>
+            <h2>グループ詳細（{{ $group->name }}）</h2>
+        </div>
+        
         <div>
-            <h3 class="group_name">
-                {{ $group->name }}
-            </h3>
+            <h3>グループ管理者</h3>
+            <div class="member_list">
+                <ul>
+                    @foreach ($group->users as $user)
+                        @if ($user->roll_id == 2)
+                        <li>{{ $user->name }}</li>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+            
+            <h3>参加メンバー</h3>
             <div class="member_list">
                 <ul>
                     @foreach ($group->users as $user)
@@ -30,5 +44,13 @@
                 </ul>
             </div>
         </div>
+        
+        <br>
+        @canany (['admin', 'leader'])
+        <div class='edit'>
+            <a href='/groups/{{ $group->id }}/edit'>編集</a>
+        </div>
+        @endcan
+        
     </body>
 </html>

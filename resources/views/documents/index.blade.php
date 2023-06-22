@@ -16,6 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
+            <div>ログイン中：<a href='/profile'>{{ $user->name }}</a></div>
         </header>
         
         <div class='pagetitle'>

@@ -16,6 +16,7 @@
                     <li><a href='/documents/index'>書類提出</a></li>
                 </ul>
             </nav>
+            <div>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></div>
         </header>
         
         <div class='pagetitle'>
@@ -59,7 +60,11 @@
                 <h3>開始報告者</h3>
                 <input type="text" name="start_user_id" value="{{ Auth::user()->name }}" readonly>
             </div>
+            <div class='status'>
+                <input type="text" value=1 name="activity[status]" readonly>
+            </div>
             <input type="submit" value="保存"/>
         </form>
+        
     </body>
 </html>
