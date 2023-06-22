@@ -80,7 +80,7 @@
             <a href='/activities/{{ $activity->id }}/edit'>編集</a>
         </div>
         
-        @can ('admin')
+        @canany ('admin', 'leader')
             <form action="/activities/{{ $activity->id }}" method="POST">
             @csrf
             @method('put')

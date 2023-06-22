@@ -1,0 +1,96 @@
+body {
+    font-family: 'Yu Gothic', 'Meiryo', 'Helvetica', sans-serif;
+    font-size: 16px;
+}
+
+header {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+main {
+    flex-basis: 920px;
+    padding: 60px;
+}
+
+aside {
+    flex-basis: 284px;
+    background-color: #eee;
+    padding: 28px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+}
+
+.groups ul li {
+    list-style-type: square;
+    margin: 16px 0 0 20px;
+}
+
+div {
+    width: 1240px;
+    margin: 0 auto 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 10px 10px 10px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0px 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header mav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+th {
+    border-bottom: 2px solid gray;
+    padding: 5px;
+    text-align: center
+}
+
+td {
+    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+}
+
+.status {
+    width: 140px;
+}
+
+.time {
+    width: 220px;
+}
+
+.group {
+    width: 180px;
+}
+
+.name {
+    width: 360px;
+}
+
+header {
+    background-color: green;
+    color: white;
+    padding: 20px 40px;
+}
