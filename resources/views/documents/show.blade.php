@@ -28,7 +28,7 @@
         @else
         <p>以下のファイルが提出済みです</p>
         <div>
-            <img src="{{ $document->path }}" alt="画像が読み込めません"/>
+            <iframe src="{{ $document->path }}" width="100%" height="500vh"></iframe>
         </div>
         @endif
         
