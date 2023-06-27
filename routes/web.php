@@ -5,6 +5,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
     //group
     Route::get('/groups/create', [GroupController::class, 'create']);
-    Route::get('/groups/{group}', [GroupController::class ,'show']);
+    Route::get('/groups/{group}', [GroupController::class ,'show'])->name('show');
     Route::put('/groups/{group}', [GroupController::class, 'update'])->name('update');
     Route::get('/groups/{group}/edit', [GroupController::class, 'edit'])->name('edit');
     Route::post('/groups', [GroupController::class, 'store']);
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/documents/{document}', [DocumentController::class, 'upload'])->name('upload');
     Route::delete('/documents/{document}', [DocumentController::class,'delete']);
     Route::post('/documents', [DocumentController::class, 'store']);
+    
+    //user
+    Route::get('/users/{user}', [UserController::class ,'show']);
+    Route::put('/users/{user}', [UserController::class, 'upload'])->name('upload');
     
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

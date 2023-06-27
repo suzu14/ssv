@@ -53,7 +53,7 @@
             <div class='participants'>
                 <h3>参加者</h3>
                 @foreach ($activity->users as $user)
-                    <p>{{ $user->name }}</p>
+                    <p><a href='/users/{{ $user->id }}'>{{ $user->name }}</a></p>
                 @endforeach
             </div>
             <div class='comment'>
