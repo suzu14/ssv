@@ -24,12 +24,26 @@
         </div>
         
         <div>
+            @foreach ($group->users as $user)
+                @continue ($user->id !== Auth::id())
+                @if ($user->id == Auth::id())
+                    <p>参加済み</p>
+                    @break
+                @else
+                <form action="/groups/register" method="POST">
+                @csrf
+                    <input type="number" name="group" value="{{ $group->id }}" readonly>
+                    <input type="submit" value="グループに参加する"/>
+                </form>
+                @endif
+            @endforeach
             <h3>グループ管理者</h3>
             <div class="member_list">
                 <ul>
                     @foreach ($group->users as $user)
-                        @if ($user->roll_id == 2)
+                        @if ($user->roll == 1)
                         <li>{{ $user->name }}</li>
+                        @else
                         @endif
                     @endforeach
                 </ul>

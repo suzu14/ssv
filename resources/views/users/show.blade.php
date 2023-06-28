@@ -42,6 +42,7 @@
                 <li><a href='/groups/{{ $group->id }}'>{{ $group->name }}</a></li>
             @endforeach
             </ul>
+            <p><a href='/groups/search'>新しいグループに参加（検索）</a></p>
             <h3>登録日</h3>
             <p class="register_at">{{ $user->created_at }}</p>
         </div>

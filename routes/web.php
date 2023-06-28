@@ -41,8 +41,11 @@ Route::middleware('auth')->group(function () {
 
     //group
     Route::get('/groups/create', [GroupController::class, 'create']);
+    Route::get('/groups/search', [GroupController::class, 'search'])->name('search');
     Route::get('/groups/{group}', [GroupController::class ,'show'])->name('show');
+    Route::get('/groups/index', [GroupController::class, 'index']);
     Route::put('/groups/{group}', [GroupController::class, 'update'])->name('update');
+    Route::post('/groups/register', [GroupController::class, 'register']);
     Route::get('/groups/{group}/edit', [GroupController::class, 'edit'])->name('edit');
     Route::post('/groups', [GroupController::class, 'store']);
     
