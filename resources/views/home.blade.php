@@ -16,9 +16,13 @@
                     <li><a href='/'>ホーム</a></li>
                     <li><a href='/create'>新規報告</a></li>
                     <li><a href='/documents/index'>書類提出</a></li>
+                    @if (Auth::user()->roll == 1)
+                    <li><a href='/groups/create'>新規グループ作成</a></li>
+                    @endif
                 </ul>
             </nav>
                 <p>ログイン中：<a href='/profile'>{{ $user->name }}</a></p>
+                <p><a href='/users/{{ $user->id }}'>プロフィール</a></p>
         </header>
         
         <div>

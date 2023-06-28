@@ -2,6 +2,15 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- roll -->
+        <div>
+            <x-input-label for="roll" :value="__('Register as')" />
+            <input type="radio" id="general" name="roll" value="2" checked>
+            <label for="general">一般ユーザー</label>
+            <input type="radio" id="leader" name="roll" value="1">
+            <label for="general">グループ管理者</label>
+        </div>
+        
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
