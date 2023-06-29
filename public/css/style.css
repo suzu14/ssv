@@ -1,96 +1,172 @@
 body {
-    font-family: 'Yu Gothic', 'Meiryo', 'Helvetica', sans-serif;
     font-size: 16px;
+    font-family: 'arial', 'Meiryo', sans-serif;
+    color: #333333;
 }
 
 header {
+    background-color: #008b8b;
+}
+
+header section {
     width: 1240px;
     margin: 0 auto;
+    padding: 18px 0 0;
+    color: white;
+    display: flex;
+}
+
+header nav ul {
+    display: flex;
+    margin: 18px 0 0;
+}
+
+header nav ul li {
+    border-right: 1px solid rgba(255,255,255,0.20);
+}
+
+header nav ul li a {
+    display: block;
+    padding: 4px 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    background-color: rgba(255,255,255,0.20);
+}
+
+.main-aside {
+    display: flex;
+    justify-content: space-between;
+    min-height: 623px;
+}
+
+.main-aside a:hover {
+    border-bottom: 1px solid #333333;
 }
 
 main {
+    padding: 32px 0;
     flex-basis: 920px;
-    padding: 60px;
 }
 
 aside {
+    margin: 18px 0;
+    padding: 14px 18px;
     flex-basis: 284px;
     background-color: #eee;
-    padding: 28px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
 }
 
-.groups ul li {
+aside ul {
+    padding: 0 0 8px 20px;
+}
+
+aside ul li {
     list-style-type: square;
-    margin: 16px 0 0 20px;
+}
+
+footer {
+    background-color: #008b8b;
+    position: absolute;
+    clear: both;
+    width: 100%;
+    text-align: right;
+}
+
+footer section {
+    width: 1240px;
+    margin: 0 auto;
+    padding: 8px 0;
+    color: white;
 }
 
 div {
     width: 1240px;
-    margin: 0 auto 50px;
-    display: flex;
-    justify-content: space-between;
+    margin: 0 auto;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
-    padding: 10px 10px 10px;
+    font-style: italic;
 }
 
 h2 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
+    margin-bottom: 18px;
 }
 
 h3 {
     font-size: 22px;
     font-weight: bold;
+    margin-bottom: 18px;
 }
 
-header nav ul {
-    display: flex;
+p {
+    padding-bottom: 8px;
 }
 
-header nav ul li {
-    margin: 0px 20px;
-    font-size: 16px;
-    font-weight: bold;
+.menu {
+    text-align: right;
 }
 
-header mav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.20);
+.menu a:hover {
+    border-bottom: 1px solid white;
+}
+
+thead {
+    border-bottom: 3px solid;
 }
 
 th {
-    border-bottom: 2px solid gray;
-    padding: 5px;
-    text-align: center
+    text-align: center;
+    margin: 4px 12px;
+}
+
+tbody {
+    border-bottom: 1px solid #333333;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
 }
 
 td {
-    border-bottom: 1px solid lightgray;
-    padding: 5px 10px;
+    margin: 4px 12px;
+    height: 30px;
+    vertical-align: middle;
 }
 
-.status {
+.time th {
+    width: 200px;
+}
+
+.time td {
+    text-align: center;
+}
+
+.name th {
+    width: 260px;
+}
+
+.status th {
     width: 140px;
 }
 
-.time {
-    width: 220px;
+.status td {
+    text-align: center;
 }
 
-.group {
+.group th {
     width: 180px;
 }
 
-.name {
-    width: 360px;
+.comment input {
+    border: 1px solid #333333;
 }
 
-header {
-    background-color: green;
-    color: white;
-    padding: 20px 40px;
+textarea {
+    border: 1px solid #333333;
 }
