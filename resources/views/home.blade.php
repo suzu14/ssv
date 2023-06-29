@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>活動履歴一覧</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -10,25 +11,38 @@
     </head>
     <body>
         <header>
-            <h1>Shift Superview</h1>
-            <nav>
-                <ul>
-                    <li><a href='/'>ホーム</a></li>
-                    <li><a href='/create'>新規報告</a></li>
-                    <li><a href='/documents/index'>書類提出</a></li>
-                    @if (Auth::user()->roll == 1)
-                    <li><a href='/groups/create'>新規グループ作成</a></li>
-                    @endif
-                </ul>
-            </nav>
-                <p>ログイン中：<a href='/profile'>{{ $user->name }}</a></p>
-                <p><a href='/users/{{ $user->id }}'>プロフィール</a></p>
+            <section class="header content">
+                <div class="header main">
+                    <h1 class="app-name">Shift Superview</h1>
+                    <nav>
+                        <ul>
+                            <li><a href='/'>ホーム</a></li>
+                            <li><a href='/create'>新規報告</a></li>
+                            <li><a href='/documents/index'>書類提出</a></li>
+                            @if (Auth::user()->roll != 2)
+                            <li><a href='/documents/create'>新規書類作成</a></li>
+                            <li><a href='/groups/create'>新規グループ作成</a></li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header menu">
+                    <p>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></p>
+                    <p><a href='/users/{{ $user->id }}'>ユーザープロフィール</a></p>
+                    <p><form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('ログアウト') }}
+                        </x-dropdown-link>
+                    </form></p>
+                </div>
+            </section>
         </header>
-        
-        <div>
+        <div class="main-aside">
             <main>
                 <h2 class='pagetitle'>活動履歴一覧</h2>
-            
                 <table class='activities'>
                     <thead>
                         <tr>
@@ -60,18 +74,23 @@
                     </tbody>
                 </table>
             </main>
-        
-        
-            @canany(['general', 'admin'])
-                <aside class='groups'>
+            <aside class='groups'>
+                <nav>
                     <h3>参加中のグループ</h3>
                     @foreach ($user->groups as $group)
                     <ul>
                         <li><a href="/groups/{{ $group->id }}">{{ $group->name }}</a></li>
                     </ul>
                     @endforeach
-                </aside>
-            @endcan
+                </nav>
+            </aside>
         </div>
+        <footer>
+            <section class="footer content">
+                <small>
+                    <p>フッター</p>
+                </small>
+            </section>
+        </footer>
     </body>
 </html>
