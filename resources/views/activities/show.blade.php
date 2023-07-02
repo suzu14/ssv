@@ -2,13 +2,19 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>活動詳細（{{ $activity->name }}）</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="/css/reset.css" >
+        <link rel="stylesheet" href="/css/style.css" >
+        <link rel="icon" 
+            href="https://res.cloudinary.com/dilvltfbr/image/upload/v1688201046/favicon_kddmlg.png" 
+            type="image/png">
     </head>
     <body>
         <header>
-            <section class="header content">
+            <section>
                 <div class="header main">
                     <h1 class="app-name">Shift Superview</h1>
                     <nav>
@@ -91,18 +97,17 @@
                         @endif
                     </div>
                 </section>
-                <div class='edit'>
-                    <a href='/activities/{{ $activity->id }}/edit'>編集</a>
-                </div>
+                <br>
+                <a class="submit" href='/activities/{{ $activity->id }}/edit'>編集</a>
                 @canany ('admin', 'leader')
                 <form action="/activities/{{ $activity->id }}" method="POST">
                 @csrf
                 @method('put')
                 <div class='approval'>
                     @if ($activity->status == 2)
-                        <button type="submit" name="activity[status]" value=3 onclick="submitApproval({{ $activity->id }})">承認</button>
+                        <button class="submit" type="submit" name="activity[status]" value=3 onclick="submitApproval({{ $activity->id }})">承認</button>
                     @elseif ($activity->status == 3)
-                        <button type="button" disabled>承認済み</button>
+                        <button class="submit" type="button" disabled>承認済み</button>
                     @endif
                 </div>
                 </form>
@@ -110,30 +115,30 @@
                 <form action="/activities/{{ $activity->id }}" id="form_{{ $activity->id }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="button" onclick="deleteActivity({{ $activity->id }})">削除</button> 
+                    <button class="submit" type="button" onclick="deleteActivity({{ $activity->id }})">削除</button> 
                 </form>
                 
                 <div class='comment'>
-                    <h2>新規コメント追加</h2>
+                    <h2 class="add-comment">新規コメント追加</h2>
                     <form action="/activities/{{ $activity->id }}" method="POST">
                         @csrf
                         <input name="comment[activity_id]" type="hidden" value="{{ $activity->id }}">
                         <input name="comment[user_comment]" type="hidden" value="{{ Auth::user()->name }}" readonly>
                         <div class='title'>
                             <h3>コメントタイトル</h3>
-                            <input type="text" name="comment[title]">
+                            <input class="text" type="text" name="comment[title]">
                         </div>
                         <div class='body'>
                             <h3>コメント本文</h3>
                             <textarea name="comment[body]"></textarea>
                         </div>
-                        <input type="submit" value="コメントする"/>
+                        <input class="submit" type="submit" value="コメントする"/>
                     </form>
                 </div>
                 <div class='comment_list'>
-                    <h3>コメント一覧</h3>
+                    <h2>コメント一覧</h2>
                     @forelse($activity->comments as $comment)
-                        <div>
+                        <div class="comment_card">
                             <p>{{ $comment->created_at }}</p>
                             <h4>{{ $comment->title }}</h4>
                             <p>{{ $comment->body }}</p>
@@ -153,10 +158,10 @@
                     @endforelse
                 </div>
             </main>
-            <aside class='groups'>
+            <aside>
                 <nav>
                     <h3>参加中のグループ</h3>
-                    @foreach ($user->groups as $group)
+                    @foreach (Auth::user()->groups as $group)
                     <ul>
                         <li><a href="/groups/{{ $group->id }}">{{ $group->name }}</a></li>
                     </ul>

@@ -47,10 +47,9 @@ class DocumentController extends Controller
         return redirect('/documents/' . $document->id);
     }
     
-    public function create(Group $group, User $user)
+    public function create(Request $request,Group $group, User $user)
     {
-        //dd(Auth::user()->group);
-        return view('documents/create')->with(['groups' => $group->get(), 'users' => $user->get()]);
+        return view('documents/create')->with(['group' => $group, 'users' => $user->get()]);
     }
     
     public function store(Request $request, Document $document, User $user)
@@ -66,5 +65,11 @@ class DocumentController extends Controller
         }
         
         return redirect('/documents/' . $document->id);
+    }
+    
+    public function delete(Document $document)
+    {
+        $document->delete();
+        return redirect('documents/index');
     }
 }
