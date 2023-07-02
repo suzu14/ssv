@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('image_path')->nullable();
+            $table->string('image_path')->default('https://res.cloudinary.com/dilvltfbr/image/upload/v1688280731/default_user_t7f0ed.png');
             $table->string('roll')->nullable();
             $table->timestamps();
             $table->softDeletes();
