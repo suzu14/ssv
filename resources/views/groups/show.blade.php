@@ -45,15 +45,15 @@
                 <h2 class='pagetitle'>グループ詳細（{{ $group->name }}）</h2>
                 <section>
                     @foreach ($group->users as $user)
-                        @continue ($user->id !== Auth::id())
+                        @continue ($user->id != Auth::id())
                         @if ($user->id == Auth::id())
                             <p>参加済み</p>
                             @break
                         @else
                         <form action="/groups/register" method="POST">
                         @csrf
-                            <input type="number" name="group" value="{{ $group->id }}" readonly>
-                            <input type="submit" value="グループに参加する"/>
+                            <input type="hidden" name="group" value="{{ $group->id }}">
+                            <input class="submit" type="submit" value="グループに参加する"/>
                         </form>
                         @endif
                     @endforeach
