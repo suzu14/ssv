@@ -50,13 +50,14 @@
                             <p>参加済み</p>
                             @break
                         @else
-                        <form action="/groups/register" method="POST">
-                        @csrf
-                            <input type="hidden" name="group" value="{{ $group->id }}">
-                            <input class="submit" type="submit" value="グループに参加する"/>
-                        </form>
+                            <p>未参加</p>
                         @endif
                     @endforeach
+                    <form action="/groups/register" method="POST">
+                        @csrf
+                        <input type="hidden" name="group" value="{{ $group->id }}">
+                        <input class="submit" type="submit" value="グループに参加する"/>
+                    </form>
                     <h3>グループ管理者</h3>
                     <ul>
                         @foreach ($group->users as $user)
