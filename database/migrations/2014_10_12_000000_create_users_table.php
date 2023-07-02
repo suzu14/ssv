@@ -20,8 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('image_path');
-            $table->string('roll');
+            $table->string('image_path')->nullable();
+            $table->string('roll')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
