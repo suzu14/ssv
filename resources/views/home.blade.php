@@ -8,10 +8,13 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="/css/reset.css" >
         <link rel="stylesheet" href="/css/style.css" >
+        <link rel="icon" 
+            href="https://res.cloudinary.com/dilvltfbr/image/upload/v1688201046/favicon_kddmlg.png" 
+            type="image/png">
     </head>
     <body>
         <header>
-            <section class="header content">
+            <section>
                 <div class="header main">
                     <h1 class="app-name">Shift Superview</h1>
                     <nav>
@@ -28,7 +31,7 @@
                 </div>
                 <div class="header menu">
                     <p>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></p>
-                    <p><a href='/users/{{ $user->id }}'>ユーザープロフィール</a></p>
+                    <p><a href='/users/{{ Auth::user()->id }}'>ユーザープロフィール</a></p>
                     <p><form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link :href="route('logout')"
@@ -43,7 +46,7 @@
         <div class="main-aside">
             <main>
                 <h2 class='pagetitle'>活動履歴一覧</h2>
-                <table class='activities'>
+                <table class='table'>
                     <thead>
                         <tr>
                             <th class="time">活動日時</th>
@@ -74,10 +77,10 @@
                     </tbody>
                 </table>
             </main>
-            <aside class='groups'>
+            <aside>
                 <nav>
                     <h3>参加中のグループ</h3>
-                    @foreach ($user->groups as $group)
+                    @foreach (Auth::user()->groups as $group)
                     <ul>
                         <li><a href="/groups/{{ $group->id }}">{{ $group->name }}</a></li>
                     </ul>

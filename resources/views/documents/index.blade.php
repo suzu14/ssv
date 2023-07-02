@@ -2,13 +2,16 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>書類提出</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="/css/reset.css" >
+        <link rel="stylesheet" href="/css/style.css" >
     </head>
     <body>
         <header>
-            <section class="header content">
+            <section>
                 <div class="header main">
                     <h1 class="app-name">Shift Superview</h1>
                     <nav>
@@ -25,7 +28,7 @@
                 </div>
                 <div class="header menu">
                     <p>ログイン中：<a href='/profile'>{{ Auth::user()->name }}</a></p>
-                    <p><a href='/users/{{ Auth::user()->id }}'>ユーザープロフィール</a></p>
+                    <p><a href='/users/{{ $user->id }}'>ユーザープロフィール</a></p>
                     <p><form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link :href="route('logout')"
@@ -40,21 +43,24 @@
         <div class="main-aside">
             <main>
                 <h2 class='pagetitle'>書類提出</h2>
-                <table class='activities'>
+                @if (Auth::user()->roll != 2)
+                    <a class="submit" href='/documents/create'>新規書類登録</a>
+                @endif
+                <table class='table'>
                     <thead>
                         <tr>
-                            <th>グループ</th>
-                            <th>内容</th>
-                            <th>ステータス</th>
-                            <th>提出期限</th>
+                            <th class="groupname">グループ</th>
+                            <th class="name">内容</th>
+                            <th class="status">ステータス</th>
+                            <th class="deadline">提出期限</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($user->documents as $document)
                         <tr>
-                            <td>{{ $document->group->name }}</td>
-                            <td><a href='/documents/{{ $document->id }}'>{{ $document->name }}</a></td>
-                            <td>
+                            <td class="groupname">{{ $document->group->name }}</td>
+                            <td class="name"><a href='/documents/{{ $document->id }}'>{{ $document->name }}</a></td>
+                            <td class="status">
                                 @if ($document->status == 1)
                                 未提出
                                 @elseif ($document->status == 2)
@@ -64,14 +70,11 @@
                                 @else
                                 @endif
                             </td>
-                            <td>{{ $document->deadline }}</td>
+                            <td class="deadline">{{ $document->deadline }}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class='create'>
-                    <a href='/documents/create'>新規書類登録</a>
-                </div>
             </main>
             <aside class='groups'>
                 <nav>

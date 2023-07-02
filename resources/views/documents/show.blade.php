@@ -2,13 +2,16 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $document->name }}</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="/css/reset.css" >
+        <link rel="stylesheet" href="/css/style.css" >
     </head>
     <body>
         <header>
-            <section class="header content">
+            <section>
                 <div class="header main">
                     <h1 class="app-name">Shift Superview</h1>
                     <nav>
@@ -49,7 +52,6 @@
                         <iframe src="{{ $document->path }}" width="100%" height="500vh"></iframe>
                     </div>
                     @endif
-                    
                     @section('preview')
                     @if ($document->path)
                         <img src="{{ $document->path }}">
@@ -61,11 +63,8 @@
                         @csrf
                         @method('PUT')
                         <input type="file" name="document_file">
-                        @if ($document->path != NULL)
-                            <input type="text" name="document[path]" value="{{ $document->path }}" readonly
-                        @endif
-                        <input type="text" name="document[status]" value=2>
-                        <input type="submit" value="アップロード">
+                        <input type="hidden" name="document[status]" value=2>
+                        <input class="submit" type="submit" value="アップロード">
                     </form>
                 </section>
                 @canany ('admin', 'leader')
@@ -73,21 +72,21 @@
                     <form action="/documents/{{ $document->id }}" method="POST">
                         @csrf
                         @method('put')
-                        <div class='approval'>
+                        @if ($document->path)
                         @if ($document->status == 2)
-                            <button type="submit" name="document[status]" value=3 onclick="submitApproval({{ $document->id }})">承認</button>
+                        <button class="submit" type="submit" name="document[status]" value=3 onclick="submitApproval({{ $document->id }})">承認</button>
                         @elseif ($document->status == 3)
-                            <button type="button" disabled>承認済み</button>
+                        <button class="submit" type="button" disabled>承認済み</button>
                         @else
                         @endif
-                        </div>
+                        @endif
                     </form>
                 </section>
                 <section class="delete-form">
                 <form action="/documents/{{ $document->id }}" id="form_{{ $document->id }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="button" onclick="deleteDocument({{ $document->id }})">削除</button> 
+                    <button class="submit" type="button" onclick="deleteDocument({{ $document->id }})">削除</button> 
                 </form>
                 </section>
                 @endcan
