@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('group_id')->constrained('groups');
             $table->string('name');
             $table->string('comment')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->foreignId('start_user_id')->constrained('users')->nullable();
             $table->foreignId('end_user_id')->constrained('users')->nullable();
             $table->dateTime('start_at')->nullable();
