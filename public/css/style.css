@@ -1,0 +1,335 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    color: #333333;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'arial', 'Meiryo', sans-serif;
+}
+
+header {
+    background-color: #008b8b;
+}
+
+header section {
+    width: 85%;
+    margin: 0 auto;
+    padding-top: 18px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+header p {
+    color: white;
+}
+
+header nav ul {
+    display: flex;
+    margin: 18px 0 0;
+}
+
+header nav ul li {
+    border-right: 1px solid rgba(255,255,255,0.20);
+}
+
+header nav ul li a {
+    display: block;
+    padding: 4px 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    background-color: rgba(255,255,255,0.20);
+}
+
+body .main-aside {
+    display: flex;
+    width: 85%;
+    margin: 0 auto;
+    flex: auto;
+    justify-content: space-between;
+}
+
+.main-aside a:hover {
+    border-bottom: 1px solid #333333;
+}
+
+.main-aside li {
+    list-style-type: square;
+    margin-bottom: 8px;
+}
+
+.user_detail .roll {
+    vertical-align: middle;
+    border-radius: 4px;
+    background-color: #3cb371;
+    color: white;
+    font-weight: bold;
+    margin: 8px 0;
+    padding: 6px;
+}
+
+body .main-aside main {
+    flex: 3 3;
+    padding: 32px 0;
+}
+
+main section ul {
+    padding: 0 0 8px 20px;
+}
+
+body .main-aside aside {
+    height: 200px;
+    margin: 18px;
+    padding: 0px 18px;
+    flex: 1 1;
+    background-color: #eee;
+}
+
+aside ul {
+    padding: 0 0 0px 20px;
+}
+
+footer {
+    background-color: #008b8b;
+    clear: both;
+    width: 100%;
+    text-align: right;
+}
+
+footer section {
+    color: white;
+    width: 1240px;
+    margin: 0 auto;
+    padding: 8px 0;
+}
+
+small {
+    color: white;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h2 {
+    color: #333333;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.add-comment {
+    margin-top: 32px;
+}
+
+h3 {
+    color: #333333;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 32px;
+    margin-bottom: 14px;
+}
+
+aside h3 {
+    margin-top: 22px;
+}
+
+p {
+    margin-bottom: 8px;
+}
+
+.menu {
+    text-align: right;
+    color: white;
+}
+
+.menu a:hover {
+    border-bottom: 1px solid white;
+}
+
+table {
+    width: 90%;
+    margin: 0 32px;
+}
+
+thead {
+    border-bottom: 3px solid;
+}
+
+th {
+    text-align: center;
+    margin: 4px 12px;
+}
+
+tbody {
+    border-bottom: 1px solid #333333;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    margin: 4px 12px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.table .time {
+    width: 25%;
+    text-align: center;
+    padding: 0 18px;
+}
+
+.table .deadline {
+    text-align: center;
+    padding: 0 18px;
+}
+
+.table .name {
+    width: 35%;
+    padding: 0 18px;
+}
+
+.table .groupname {
+    padding: 0 18px;
+}
+
+.table .status {
+    width: 20%;
+    text-align: center;
+    padding: 0 18px;
+}
+
+.table .group {
+    width: 20%;
+    padding: 0 18px;
+}
+
+.text {
+    width: 400px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin-left: 18px;
+    padding: 8px 14px;
+}
+
+textarea {
+    width: 400px;
+    height: 100px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin-left: 18px;
+}
+
+select {
+    margin-left: 18px;
+    padding: 8px 14px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+}
+
+iframe {
+    border: 1px solid #333333;
+}
+
+.icon {
+    width: 200px;
+    height: 200px;
+}
+
+.submit {
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin: 18px;
+    padding: 6px;
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.comment_card {
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin: 18px;
+    padding: 6px;
+    background-color: #eeeeee;
+}
+
+.checkbox {
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-Input {
+    margin: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.checkbox:hover > .checkbox-DummyInput {
+    background: #CCCCCC;
+}
+
+.checkbox-Input:focus + .checkbox-DummyInput{
+    background: #CCCCCC;
+}
+
+.checkbox-Input:checked + .checkbox-DummyInput {
+    background: #555555;
+}
+
+.checkbox-Input:checked + .checkbox-DummyInput::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35%;
+    height: 2px;
+    transform: translate(-5px, 6px) rotateZ(-135deg);
+    transform-origin: 1px 1px;
+    background: #FFFFFF;
+}
+.checkbox-Input:checked + .checkbox-DummyInput::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    transform: translate(-5px, 6px) rotateZ(-45deg);
+    transform-origin: 1px 1px;
+    background: #FFFFFF;
+}
+
+.checkbox-DummyInput {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: #F5F5F5;
+    box-shadow: 0 1px 4px rgba(0,0,0, .4) inset;
+}
+
+.checkbox-LabelText {
+    margin-left: 12px;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
